@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <list>
+#include <queue>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -22,9 +23,14 @@ class Snake : public sf::Drawable
     ~Snake();
 
     void Init(const sf::Texture &texture);
+    void loadNew(const sf::Texture &texture);
     void Move(const sf::Vector2f &direction);
     bool IsOn(const sf::Sprite &other);
     void Grow(const sf::Vector2f &direction);
+    bool selfIntersect();
+    void Reset();
+    std::vector <sf::Vector2f> getBodyPos();
+    std::vector <sf::Vector2f> getBodyPosEnd();
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };
